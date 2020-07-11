@@ -5,15 +5,11 @@ $database = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $password = getenv('DB_PASS');
 
-
 $conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
-
-$ponteiro = pg_query($conexao, "select nome, quantidade from lista ORDER BY id DESC");
-
+$ponteiro = pg_query($conexao, "select name, quantity from lista ORDER BY id DESC");
 
 $array_com_os_valores = pg_fetch_all($ponteiro);
-
 ?>
 
 <html>
@@ -25,7 +21,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
 	<ul>
 		<?php foreach($array_com_os_valores as $item): ?>
 			<li>
-				<?= $item['quantidade']?> - <?= $item['nome']?>
+				<?= $item['quantity']?> - <?= $item['name']?>
 			</li>
 		<?php endforeach ?>
 	</ul>
