@@ -122,9 +122,9 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         Lista de compras
         <img src="https://picsum.photos/30/30"/>
     </h1>
-    <ul>
+    <div>
         <?php foreach ($array_com_os_valores as $item): ?>
-            <li>
+            <div>
                 <div>
                     <div class="item-name">
                         <?= $item['quantity'] ?> -
@@ -135,9 +135,10 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
                     </div>
                 </div>
                 <a href="#">X</a>
-            </li>
+                <a href="/deletar.php?name=<?= $item['name']?>">X</a>
+			</div>
         <?php endforeach ?>
-    </ul>
+    </div>
     <form action="/add.php" method="post">
         <h2>Adicionar novo ítem</h2>
         <div>
