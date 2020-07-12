@@ -55,6 +55,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
             padding: 10px;
             border-bottom: 1px solid #666;
             justify-content: space-between;
+            cursor: pointer;
         }
 
         li:hover {
@@ -79,12 +80,17 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         }
 
         li .item-and-user-name {
-            margin-left: 5px;
+            margin-left: 8px;
         }
 
         li .user-name {
             color: #DDD;
             font-size: 10px;
+        }
+
+        li .item-name {
+            display: inline-flex;
+            align-items: center;
         }
 
         form {
@@ -120,7 +126,9 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         <?php foreach ($array_com_os_valores as $item): ?>
             <li>
                 <div>
-                    <div><?= $item['quantity'] ?> -</div>
+                    <div class="item-name">
+                        <?= $item['quantity'] ?> -
+                    </div>
                     <div class="item-and-user-name">
                         <div><?= $item['name'] ?></div>
                         <div class="user-name">Nome de quem criou</div>
