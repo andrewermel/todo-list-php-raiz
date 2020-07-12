@@ -9,6 +9,14 @@ $conexao = pg_connect("host=$host port=$port dbname=$database user=$user passwor
 
 $id = $_GET['id'];
 
-$ponteiro = pg_query($conexao, "DELETE FROM lista WHERE id = $id");
+$ponteiro = pg_query($conexao, "SELECT done FROM lista  WHERE id = $id");
 
-header('Location: /');
+$item = pg_fetch_assoc($ponteiro);
+
+$done = $item['done'] == 't' ? 'FALSE' : 'TRUE';
+
+pg_query($conexao, "UPDATE lista SET done = $done WHERE id = $id");
+
+header('location: /');
+
+?>

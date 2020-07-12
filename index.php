@@ -7,9 +7,10 @@ $password = getenv('DB_PASS');
 
 $conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
-$ponteiro = pg_query($conexao, "select name, quantity from lista ORDER BY id DESC");
+$ponteiro = pg_query($conexao, "SELECT * FROM lista ORDER BY id DESC");
 
 $array_com_os_valores = pg_fetch_all($ponteiro);
+
 ?>
 
 <html>
@@ -42,53 +43,62 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         }
 
         #lista {
-            max-width: 400px;
+            width: 400px;
+            max-width: 100%;
         }
 
-        ul {
+        .item-list {
             padding: 0;
             list-style: none;
         }
 
-        li {
+        .item {
+            text-decoration: none;
+            color: #333;
             display: flex;
             padding: 10px;
-            border-bottom: 1px solid #666;
+            border-top: 1px solid #666;
             justify-content: space-between;
             cursor: pointer;
         }
 
-        li:hover {
+        .item.done {
+            text-decoration: line-through;
+        }
+
+        .item:hover {
             background-color: #FFD;
         }
 
-        li a {
-            display: inline-block;
+        .item .item-delete {
+            display: inline-flex;
             text-align: center;
             color: red;
             width: 18px;
             text-decoration: none;
+            align-items: center;
+            justify-content: center;
         }
 
-        li a:hover {
+        .item .item-delete:hover {
             background: rgba(0, 0, 0, 0.2);
         }
 
-        li > div {
+        .item > div {
             display: inline-flex;
             align-items: center;
         }
 
-        li .item-and-user-name {
+        .item .item-and-user-name {
             margin-left: 8px;
         }
 
-        li .user-name {
+        .item .user-name {
             color: #DDD;
             font-size: 10px;
         }
 
-        li .item-name {
+        .item .item-name {
             display: inline-flex;
             align-items: center;
         }
@@ -112,6 +122,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         }
 
         h2 {
+            font-size: 18px;
             margin-top: 0;
         }
     </style>
@@ -122,9 +133,9 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         Lista de compras
         <img src="https://picsum.photos/30/30"/>
     </h1>
-    <ul>
+    <div class="item-list">
         <?php foreach ($array_com_os_valores as $item): ?>
-            <li>
+            <a class="item <?= $item['done'] == 't' ? 'done' : '' ?>" href="/concluir.php?id=<?= $item['id'] ?>">
                 <div>
                     <div class="item-name">
                         <?= $item['quantity'] ?> -
@@ -134,8 +145,8 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
                         <div class="user-name">Nome de quem criou</div>
                     </div>
                 </div>
-                <a href="/deletar.php?name=<?= $item['name']?>">X</a>
-			</div>
+                <span class="item-delete" data-id="<?= $item['id'] ?>">X</span>
+            </a>
         <?php endforeach ?>
     </div>
     <form action="/add.php" method="post">
@@ -152,6 +163,14 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
             <button>Adicionar</button>
         </div>
     </form>
+    <script>
+        document.querySelector('.item-delete').addEventListener('click', e => {
+            e.stopPropagation()
+            e.preventDefault()
+            const id = e.target.dataset.id
+            location.href = `/deletar.php?id=${id}`
+        })
+    </script>
 </div>
 </body>
 </html>
