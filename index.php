@@ -134,7 +134,6 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
                         <div class="user-name">Nome de quem criou</div>
                     </div>
                 </div>
-                <a href="#">X</a>
                 <a href="/deletar.php?name=<?= $item['name']?>">X</a>
 			</div>
         <?php endforeach ?>
