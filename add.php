@@ -12,6 +12,11 @@ $password = 'a3dc6f7ca7fc5c83f8ab3109d05c24fb3028d3ea663f7cd4947cb3212dc08485';
 
 $conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
-$ponteiro = pg_query($conexao, "INSERT INTO lista (quantity, name) VALUES ($quantity, '$name')");
+if(!$quantity){
+  $ponteiro = pg_query($conexao, "INSERT INTO lista (name) VALUES ('$name')");
+}
+else{
+    $ponteiro = pg_query($conexao, "INSERT INTO lista (quantity, name) VALUES ($quantity, '$name')");
+}
 
 header('Location:  /');
