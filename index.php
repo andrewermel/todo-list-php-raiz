@@ -7,7 +7,7 @@ $password = 'a3dc6f7ca7fc5c83f8ab3109d05c24fb3028d3ea663f7cd4947cb3212dc08485';
 
 $conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
-$ponteiro = pg_query($conexao, "select name, quantity from lista ORDER BY id DESC");
+$ponteiro = pg_query($conexao, "select id, name, quantity from lista ORDER BY id DESC");
 
 $array_com_os_valores = pg_fetch_all($ponteiro);
 ?>
@@ -22,6 +22,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
 		<?php foreach($array_com_os_valores as $item): ?>
 			<li>
 				<?= $item['quantity']?> - <?= $item['name']?>
+                <a href="del.php?id=<?= $item['id']?>">X</a>
 			</li>
 		<?php endforeach ?>
 	</ul>

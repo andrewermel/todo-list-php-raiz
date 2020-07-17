@@ -1,7 +1,6 @@
 <?php
 
-$quantity = $_POST['quantity'];
-$name = $_POST['name'];
+$id = $_GET['id'];
 
 $host = 'ec2-34-233-226-84.compute-1.amazonaws.com';
 $port = '5432';
@@ -11,11 +10,6 @@ $password = 'a3dc6f7ca7fc5c83f8ab3109d05c24fb3028d3ea663f7cd4947cb3212dc08485';
 
 $conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
-if(!$quantity){
-  $ponteiro = pg_query($conexao, "INSERT INTO lista (name) VALUES ('$name')");
-}
-else{
-    $ponteiro = pg_query($conexao, "INSERT INTO lista (quantity, name) VALUES ($quantity, '$name')");
-}
+$ponteiro = pg_query($conexao, "DELETE FROM lista WHERE id = $id");
 
-header('Location:  /');
+header('Location: /');
