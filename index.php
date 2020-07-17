@@ -15,24 +15,86 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
 <html>
 <head>
 	<title>Do To list do Andrew</title>
+    <style>
+        body{
+            margin: 0;
+            background-color: #999;
+            font-family: Arial;
+        }
+        #container{
+            width: 360px;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+        h1{
+            background: #666;
+            color: white;
+            margin: 0;
+            padding: 10px;
+        }
+        ul{
+            list-style: none;
+            padding-left: 10px;
+        }
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #888;
+            display: flex;
+            justify-content: space-between;
+        }
+        li > a {
+            margin-right: 10px;
+            display: inline-block;
+            color: #ca0909;
+            text-decoration: none;
+            padding: 0 3px;
+            border-radius: 12px;
+        }
+        li > a:hover {
+            background-color: #777;
+        }
+        form > * {
+            display: block;
+            padding: 10px;
+        }
+        form input {
+            width: calc(100% - 20px);
+            margin: 0 10px;
+        }
+
+        form button{
+            width: calc(100% - 20px);
+            margin-left: 10px;
+            background-color: #00c5ff;
+            color: #0f005f;
+            border: none;
+            margin-top: 10px;
+            border-radius: 100px;
+        }
+        form button:hover{
+            background-color: #00749b;
+        }
+    </style>
 </head>
 <body>
-	<h1>Lista de compras</h1>
-	<ul>
-		<?php foreach($array_com_os_valores as $item): ?>
-			<li>
-				<?= $item['quantity']?> - <?= $item['name']?>
-                <a href="del.php?id=<?= $item['id']?>">X</a>
-			</li>
-		<?php endforeach ?>
-	</ul>
-    <form action="add.php" method="post">
-        <label>Quantidade:</label>
-        <input type="number" name="quantity" />
-        <label>Nome:</label>
-        <input type="text" name="name" />
-        <button>Enviar</button>
-    </form>
+	<div id="container">
+        <h1>Lista de compras</h1>
+        <ul>
+            <?php foreach($array_com_os_valores as $item): ?>
+                <li>
+                    <div><?= $item['quantity']?> - <?= $item['name']?></div>
+                    <a href="del.php?id=<?= $item['id']?>">X</a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+        <form action="add.php" method="post">
+            <label>Quantidade:</label>
+            <input type="number" name="quantity" />
+            <label>Nome:</label>
+            <input type="text" name="name" />
+            <button>Enviar</button>
+        </form>
+    </div>
 </body>
 </html>
 
