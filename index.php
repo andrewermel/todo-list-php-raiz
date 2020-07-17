@@ -75,6 +75,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
             background-color: #00749b;
         }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 	<div id="container">
