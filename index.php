@@ -19,7 +19,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         body{
             margin: 0;
             background-color: #999;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
         }
         #container{
             width: 360px;
@@ -88,10 +88,10 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
             <?php endforeach ?>
         </ul>
         <form action="add.php" method="post">
-            <label>Quantidade:</label>
-            <input type="number" name="quantity" />
-            <label>Nome:</label>
-            <input type="text" name="name" />
+            <label for="quantity">Quantidade:</label>
+            <input id="quantity" type="number" name="quantity" />
+            <label for="name">Nome:</label>
+            <input id="name" type="text" name="name" />
             <button>Enviar</button>
         </form>
     </div>
