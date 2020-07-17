@@ -25,6 +25,13 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
 			</li>
 		<?php endforeach ?>
 	</ul>
+    <form action="add.php" method="post">
+        <label>Quantidade:</label>
+        <input type="number" name="quantity" />
+        <label>Nome:</label>
+        <input type="text" name="name" />
+        <button>Enviar</button>
+    </form>
 </body>
 </html>
 
