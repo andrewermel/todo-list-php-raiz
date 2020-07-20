@@ -19,7 +19,7 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
         <?php foreach ($array_com_os_valores as $item): ?>
             <li>
                 <div class="<?= $item['done'] === 't' ? 'concluido' : 'nao-concluido' ?>">
-                    <a href="done.php?id=<?= $item['id'] ?>">
+                    <a href="done.php?id=<?= $item['id'] ?>&mark=<?= $item['done'] === 't' ? 'FALSE' : 'TRUE'?>">
                         <?= $item['quantity'] ?> - <?= $item['name'] ?>
                     </a>
                 </div>
