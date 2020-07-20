@@ -1,13 +1,7 @@
 <?php
-$host = 'ec2-34-233-226-84.compute-1.amazonaws.com';
-$port = '5432';
-$database = 'd7r0ukrhem4kv0';
-$user = 'shqfnemscchnnh';
-$password = 'a3dc6f7ca7fc5c83f8ab3109d05c24fb3028d3ea663f7cd4947cb3212dc08485';
+require 'database.php';
 
-$conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
-
-$ponteiro = pg_query($conexao, "select id, name, quantity from lista ORDER BY id DESC");
+$ponteiro = db_execute_query("select id, name, quantity from lista ORDER BY id DESC");
 
 $array_com_os_valores = pg_fetch_all($ponteiro);
 ?>
