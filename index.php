@@ -1,9 +1,10 @@
 <?php
 require 'database.php';
 
-$ponteiro = db_execute_query("select id, name, quantity, done from lista ORDER BY id DESC");
+$ponteiro = db_execute_query("SELECT id, name, quantity, done FROM lista ORDER BY id DESC");
 
 $array_com_os_valores = pg_fetch_all($ponteiro);
+
 ?>
 
 <html>
@@ -18,12 +19,13 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
     <ul>
         <?php foreach ($array_com_os_valores as $item): ?>
             <li>
-                <a class="nome-item" href="done.php?id=<?= $item['id'] ?>&mark=<?= $item['done'] === 't' ? 'FALSE' : 'TRUE'?>">
+                <a class="nome-item"
+                   href="done.php?id=<?= $item['id'] ?>&mark=<?= $item['done'] === 't' ? 'FALSE' : 'TRUE' ?>">
                     <div class="<?= $item['done'] === 't' ? 'concluido' : 'nao-concluido' ?>">
-                            <?= $item['quantity'] ?> - <?= $item['name'] ?>
+                        <?= $item['quantity'] ?> - <?= $item['name'] ?>
                     </div>
-                    <a class="close" href="del.php?id=<?= $item['id'] ?>">X</a>
                 </a>
+                <a class="close" href="del.php?id=<?= $item['id'] ?>">X</a>
             </li>
         <?php endforeach ?>
     </ul>

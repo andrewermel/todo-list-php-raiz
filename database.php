@@ -14,13 +14,10 @@ function db_execute_query($query)
 }
 
 
-function verify_sql_injection($obj)
+function sql_anti_injection($sql)
 {
-    $obj = preg_replace("/(from|alter table|select|insert|delete|update|where|drop table|show tables|#|*|--|\\)/i", "", $obj);
-    $obj = trim($obj);
-    $obj = strip_tags($obj);
-    if (!get_magic_quotes_gpc()) {
-        $obj = addslashes($obj);
-    }
-    return $obj;
+    $sql = trim($sql);
+    $sql = strip_tags($sql);
+    $sql = pg_escape_string($sql);
+    return preg_replace("@(--|#|;|=)@s", '', $sql);
 }
