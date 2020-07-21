@@ -18,12 +18,12 @@ $array_com_os_valores = pg_fetch_all($ponteiro);
     <ul>
         <?php foreach ($array_com_os_valores as $item): ?>
             <li>
-                <div class="<?= $item['done'] === 't' ? 'concluido' : 'nao-concluido' ?>">
-                    <a href="done.php?id=<?= $item['id'] ?>&mark=<?= $item['done'] === 't' ? 'FALSE' : 'TRUE'?>">
-                        <?= $item['quantity'] ?> - <?= $item['name'] ?>
-                    </a>
-                </div>
-                <a href="del.php?id=<?= $item['id'] ?>">X</a>
+                <a class="nome-item" href="done.php?id=<?= $item['id'] ?>&mark=<?= $item['done'] === 't' ? 'FALSE' : 'TRUE'?>">
+                    <div class="<?= $item['done'] === 't' ? 'concluido' : 'nao-concluido' ?>">
+                            <?= $item['quantity'] ?> - <?= $item['name'] ?>
+                    </div>
+                    <a class="close" href="del.php?id=<?= $item['id'] ?>">X</a>
+                </a>
             </li>
         <?php endforeach ?>
     </ul>
