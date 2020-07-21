@@ -1,8 +1,8 @@
 <?php
 require 'database.php';
 
-$quantity = $_POST['quantity'];
-$name = $_POST['name'];
+$quantity = verify_sql_injection($_POST['quantity']);
+$name = verify_sql_injection($_POST['name']);
 
 if(!$quantity){
   $query = "INSERT INTO lista (name) VALUES ('$name')";

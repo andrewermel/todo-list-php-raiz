@@ -1,6 +1,7 @@
 <?php
 
-function db_execute_query($query){
+function db_execute_query($query)
+{
     $host = 'ec2-34-233-226-84.compute-1.amazonaws.com';
     $port = '5432';
     $database = 'd7r0ukrhem4kv0';
@@ -10,4 +11,16 @@ function db_execute_query($query){
     $conexao = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
     return pg_query($conexao, $query);
+}
+
+
+function verify_sql_injection($obj)
+{
+    $obj = preg_replace("/(from|alter table|select|insert|delete|update|where|drop table|show tables|#|*|--|\\)/i", "", $obj);
+    $obj = trim($obj);
+    $obj = strip_tags($obj);
+    if (!get_magic_quotes_gpc()) {
+        $obj = addslashes($obj);
+    }
+    return $obj;
 }
