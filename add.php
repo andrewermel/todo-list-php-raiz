@@ -15,12 +15,16 @@ else{
   $query = "INSERT INTO lista (quantity, name) VALUES ($quantity, '$name')";
 }
 
-$ponteiro = db_execute_query("SELECT * FROM lista WHERE name = '$name'");
-$item = pg_fetch_assoc($ponteiro);
-
-if(!$item) {
-  db_execute_query($query);
-  header('Location:  /');
+if(existe_um_item_com_este_nome($name)) {
+    die("Não foi possível cadastras um ítem com nome $name");
 }
 
-die("Não foi possível cadastras um ítem com nome $name");
+db_execute_query($query);
+header('Location:  /');
+
+
+function existe_um_item_com_este_nome($name){
+    $ponteiro = db_execute_query("SELECT * FROM lista WHERE name = '$name'");
+    $item = pg_fetch_assoc($ponteiro);
+    return $item;
+}
