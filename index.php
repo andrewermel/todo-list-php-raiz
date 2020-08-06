@@ -21,7 +21,20 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
 
 <body>
     <h1>Lista de Compras</h1>
-    <ul>
+    <ul><?php 
+         
+         $ponteiro = pg_query($conexao,"SELECT name,quantidade from list");
+         $Item = pg_fetch_array($ponteiro);
+        while($Item){
+            echo $Item["quantidade"];
+            echo" - ";
+            echo $Item["name"];
+            echo "<br/>";
+            $Item = pg_fetch_array($ponteiro);
+        }
+        
+        
+    ?>
    
 
 
