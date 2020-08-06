@@ -22,7 +22,7 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
 <body>
     <h1>Lista de Compras</h1>
     <ul>
-
+   
 
 
 

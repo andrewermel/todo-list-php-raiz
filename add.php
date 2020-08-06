@@ -17,6 +17,8 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
 $quantidade = $_POST['quantidade'];
 $nomeItem = $_POST['nomeItem'];
 
+$resultQuery = pg_query ($conexao,"INSERT INTO list (quantidade,name) VALUES ($quantidade,'$nomeItem')");
+
 echo 'ola, mundo!';
 echo $quantidade;
 echo $nomeItem;
