@@ -22,16 +22,17 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
     <h1>Lista de Compras</h1>
     <ul><?php 
          
-         $ponteiro = pg_query($conexao,"SELECT name,quantidade,id from list");
+         $ponteiro = pg_query($conexao,"SELECT name,quantidade,id,done from list");
          $Item = pg_fetch_array($ponteiro);
         while($Item){
             echo $Item["quantidade"];
             echo" - ";
             echo $Item["name"];
             // é o x para o detele
-            echo "<a href=\"del.php?id=$Item[id]\">x</a>";
-           // echo '<a href="del.php?id=' . $Item['id'] .'">X</a>';
+            //echo "<a href=\"del.php?id=$Item[id]\">x</a>";
+            echo '<a href="del.php?id=' . $Item['id'] .'">X</a>';
             //
+            echo '<a href="done.php?id=' . $Item['id'] .'">V'.$Item['done'] .' </a>';
             echo "<br/>";
             $Item = pg_fetch_array($ponteiro);
         }
