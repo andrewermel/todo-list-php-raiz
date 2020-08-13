@@ -13,14 +13,11 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
 $quantidade = $_POST['quantidade'];
 $nomeItem = $_POST['nomeItem'];
 
-
-
-
-
 $ponteiro = pg_query($conexao,"SELECT name from list WHERE '$nomeItem'= name");
 $Item = pg_fetch_array($ponteiro);
-
-if($Item && $nomeItem == $Item['name']){
+// Se NÃO existir uma linha no banco com o mesmo nome recebido $Item vem vazio linha 16
+// Se existir vem um array contendo $Item['name'] linha 17
+if($Item ){
     echo 'Item já existe na lista';
 
 
