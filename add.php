@@ -13,10 +13,18 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
 $quantidade = $_POST['quantidade'];
 $nomeItem = $_POST['nomeItem'];
 
-$resultQuery = pg_query ($conexao,"INSERT INTO list (quantidade,name) VALUES ($quantidade,'$nomeItem')");
 
-echo 'ola, mundo!';
-echo $quantidade;
-echo $nomeItem;
 
-header("location:index.php");
+
+
+$ponteiro = pg_query($conexao,"SELECT name from list WHERE '$nomeItem'= name");
+$Item = pg_fetch_array($ponteiro);
+
+if($Item && $nomeItem == $Item['name']){
+    echo 'Item já existe na lista';
+
+
+}else {
+    $resultQuery = pg_query ($conexao,"INSERT INTO list (quantidade,name) VALUES ($quantidade,'$nomeItem')");
+    header("location:index.php");
+};
