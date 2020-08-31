@@ -16,52 +16,67 @@ $conexao= pg_connect("host=$host port=$port dbname=$database user=$user password
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Compras</title>
+    <link rel="stylesheet"  href="style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>Lista de Compras</h1>
-    <ul><?php 
-         
-         $ponteiro = pg_query($conexao,"SELECT name,quantidade,id,done from list");
-         $Item = pg_fetch_array($ponteiro);
-        while($Item){
-            echo $Item["quantidade"];
-            echo" - ";
-            echo $Item["name"];
-            // é o x para o detele
-            //echo "<a href=\"del.php?id=$Item[id]\">x</a>";
-            echo '<a href="del.php?id=' . $Item['id'] .'">X</a>';
-            //
-            echo '<a href="done.php?id=' . $Item['id'] .'">V'.$Item['done'] .' </a>';
-            echo "<br/>";
-            $Item = pg_fetch_array($ponteiro);
-        }
+    <div class="caixa">
+        <h1>Lista de Compras</h1>
+
+        <div class ="lista" >
+
+            <ul><?php 
+                $ponteiro = pg_query($conexao,"SELECT name,quantidade,id,done from list");
+                $Item = pg_fetch_array($ponteiro);
+                while($Item){
+                    $class="";
+                    if($Item["done"]=="t"){
+                        $class="riscado";
+                    }
+                    echo '<div class="item '.$class.'">';
+                    echo $Item["quantidade"];
+                    echo" - ";
+                    echo '<a href="done.php?id='.$Item["id"].'"> '.$Item["name"].'</a>';
+                    echo'</div>';
+                    
+                    // é o x para o detele
+                    //echo "<a href=\"del.php?id=$Item[id]\">x</a>";
+                    echo '<a href="del.php?id=' . $Item['id'] .'"class="x">X</a>';
+                    //
+                    //echo '<a href="done.php?id=' . $Item['id'] .'" class ="v" >V </a>';
+                
+                    echo "<br/>";
+                    $Item = pg_fetch_array($ponteiro);
+                }
+                
+                
+            ?>
         
-        
-    ?>
-   
 
 
 
 
 
 
-    </ul>
-    <form action="add.php" method="POST">
-        <div>
-            <div>
-                <label>Quantidade</label>
-                <div>
-                    <input name="quantidade" type="number">
-                </div>
-            </div>
-            <label>Item</label>
-            <div>
-                <input name="nomeItem" type="text">
-            </div>
-            <button>enviar</button>
+            </ul>
         </div>
-    </form>
+        <form action="add.php" method="POST">
+            <div>
+                <div>
+                    <label>Quantidade</label>
+                    <div>
+                        <input class="form-control" name="quantidade" type="number">
+                    </div>
+                </div>
+                <label>Item</label>
+                <div>
+                    <input class="form-control" name="nomeItem" type="text">
+                </div>
+                <button class="btn btn-primary" >enviar</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

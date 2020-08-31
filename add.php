@@ -21,7 +21,12 @@ if($Item ){
     echo 'Item já existe na lista';
 
 
-}else {
+}elseif($quantidade < 0){
+    echo 'quantidade invalida digite um numero positivo!!';
+    //echo '<a href="/">voltar</a>';
+    header("location:index.php?error=quantidade_negativa");
+}
+else {
     $resultQuery = pg_query ($conexao,"INSERT INTO list (quantidade,name) VALUES ($quantidade,'$nomeItem')");
     header("location:index.php");
 };

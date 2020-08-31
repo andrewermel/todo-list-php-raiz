@@ -1,0 +1,41 @@
+body{
+    background-color: darkgray;
+}
+.caixa{
+    margin-left: auto;
+    margin-right: auto;
+    width: 360px;
+    
+}
+
+.lista {
+
+    border-style: solid; 
+    display:block;
+}
+
+ul{
+    padding: 27px;
+}
+
+.v{
+    padding: 11px;
+
+
+}
+
+.x{
+    padding: 7px;
+}
+
+.item{
+    display:inline-block;
+    width: 100px;
+}
+.item a{
+    color:inherit;
+}
+.riscado{
+    color:red;
+    text-decoration:line-through;
+}
