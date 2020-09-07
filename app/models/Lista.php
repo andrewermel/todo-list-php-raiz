@@ -8,18 +8,18 @@ class Lista extends Eloquent {
     }
 
     public static function addItem($quantidade, $nomeItem){
-        DB::insert("INSERT INTO list (quantidade,name) VALUES ($quantidade,'$nomeItem')");
+        DB::insert("INSERT INTO list (quantidade,name) VALUES (?,?)", [$quantidade, $nomeItem]);
     }
 
     public static function buscaUmItemPorNome($nomeItem){
-        return DB::select("SELECT name from list WHERE '$nomeItem'= name");
+        return DB::select("SELECT name from list WHERE ?= name", [$nomeItem]);
     }
 
     public static function deletarItemPorId($delete){
-        return DB::delete("DELETE FROM list WHERE id= $delete");
+        return DB::delete("DELETE FROM list WHERE id= ?",[$delete]);
     }
     
     public static function marcarComoConcluidoPorId($concluido){
-        return DB::update("UPDATE list SET done = True where id = $concluido");
+        return DB::update("UPDATE list SET done = True where id = ?",[$concluido]);
     }
 }
