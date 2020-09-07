@@ -9,8 +9,7 @@ class ListaAddController extends BaseController {
         if(!empty($items)){
             echo 'Item já existe na lista';
         }
-        elseif($quantidade < 0){
-            echo 'quantidade invalida digite um numero positivo!!';
+        elseif($quantidade <= 0){
             return Redirect::to("/lista?error=quantidade_negativa");
         }
         else {

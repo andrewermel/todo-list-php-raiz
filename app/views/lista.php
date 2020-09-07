@@ -23,9 +23,9 @@
                 <div class="item <?=$Item->class?>">
                     <?=$Item->quantidade?>
                     -
-                    <a href="done.php?id=<?=$Item->id?>" title="Criado por <?=$Item->user_name?>"><?=$Item->name?></a>
+                    <a href="done?id=<?=$Item->id?>" title="Criado por <?=$Item->user_name?>"><?=$Item->name?></a>
                 </div>
-                <a href="del.php?id=<?=$Item->id?>"class="x">X</a>
+                <a href="del?id=<?=$Item->id?>"class="x">X</a>
 
                 <br/>
             <?php endforeach ?>

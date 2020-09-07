@@ -14,4 +14,12 @@ class Lista extends Eloquent {
     public static function buscaUmItemPorNome($nomeItem){
         return DB::select("SELECT name from list WHERE '$nomeItem'= name");
     }
+
+    public static function deletarItemPorId($delete){
+        return DB::delete("DELETE FROM list WHERE id= $delete");
+    }
+    
+    public static function marcarComoConcluidoPorId($concluido){
+        return DB::update("UPDATE list SET done = True where id = $concluido");
+    }
 }

@@ -5,7 +5,7 @@ class HomeController extends BaseController {
 	public function index()
 	{
         if(isset($_SESSION['login'])){
-            header('location: /lista.php');
+            return Redirect::to('/lista');
         }
 
         $mensagem = '';
