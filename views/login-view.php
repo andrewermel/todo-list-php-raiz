@@ -14,7 +14,6 @@
 			<input name="password" class="form-control">
 			<br/>
 			<button class="btn btn-primary">Entrar</button>
-			<?=$mensagem?>
 		</form>
 	</div>
 

@@ -19,13 +19,8 @@
         <div class ="lista" >
 
             <ul>
-                <?php 
-                while($Item = pg_fetch_array($ponteiro)):
-                    $class = ($Item["done"]=="t") ? "riscado" : "";
-                    ?>
-
-
-                    <div class="item <?=$class?>">
+                <?php foreach($items as $Item):?>
+                    <div class="item <?=$Item['class']?>">
                     <?=$Item["quantidade"]?>
                      - 
                     <a href="done.php?id=<?=$Item["id"]?>" title="Criado por <?=$Item['user_name']?>"><?=$Item["name"]?></a>
@@ -33,8 +28,7 @@
                     <a href="del.php?id=<?=$Item['id']?>"class="x">X</a>
                 
                     <br/>
-
-                <?php endwhile ?>
+                <?php endforeach ?>
 
             </ul>
         </div>
