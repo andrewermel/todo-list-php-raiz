@@ -6,7 +6,7 @@ class ListaAddController extends BaseController {
 
         $items = Lista::buscaUmItemPorNome($nomeItem);
 
-        if(!empty($items)){
+        if(!$items->isEmpty()){
             echo 'Item já existe na lista';
         }
         elseif($quantidade <= 0){
